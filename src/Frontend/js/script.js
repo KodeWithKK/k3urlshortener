@@ -1,6 +1,7 @@
 'use strict';
 
-const serverURL = 'https://k3url.onrender.com';
+const serverURL = 'https://k3urlshortner.pages.dev/';
+// const serverURL = 'https://k3url.onrender.com';
 // const serverURL = 'http://localhost:8000';
 
 import {
