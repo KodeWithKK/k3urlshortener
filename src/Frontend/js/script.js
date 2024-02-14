@@ -1,6 +1,6 @@
 'use strict';
 
-const serverURL = 'https://k3urlshortner.pages.dev/';
+const serverURL = 'https://k3url.netlify.com/';
 // const serverURL = 'https://k3url.onrender.com';
 // const serverURL = 'http://localhost:8000';
 
@@ -50,6 +50,7 @@ btnShortUrl.addEventListener('click', async () => {
       }
     })
     .catch(error => {
+      btnShortUrl.textContent = 'Short URL';
       responseMessage.style.display = 'block';
       responseMessage.textContent = 'Something went wrong!';
     })
