@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/Backend/index.js",
     "nodemon": "nodemon src/Backend/index.js",
-    "build": "npm install && node src/Backend/index.js"
+    "build": "npm install"
   },
   "author": "",
   "license": "ISC",
