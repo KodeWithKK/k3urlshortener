@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/Backend/index.js",
+    "nodemon": "nodemon src/Backend/index.js",
+    "build": "npm install"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "is-a-url": "^1.0.1-a",
+    "mongoose": "^8.1.1"
+  }
+}
