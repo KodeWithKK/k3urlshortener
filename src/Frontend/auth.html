@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K3 URL Shortner</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon" />
+    <script
+      src="https://kit.fontawesome.com/85e64bd5fe.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav>
+      <div class="brand-logo">
+        <a href="/">K3 URL Shortner</a>
+      </div>
+      <div class="btn-switch-theme">
+        <i class="fa-solid fa-sun"></i>
+      </div>
+    </nav>
+
+    <section class="section-forms">
+      <form class="form form-sign-up">
+        <h1>Sign Up</h1>
+
+        <label for="name"> Name: </label>
+        <input
+          type="text"
+          name="name"
+          spellcheck="false"
+          required="true"
+        /><br />
+
+        <label for="email"> Email: </label>
+        <input
+          type="email"
+          name="email"
+          spellcheck="false"
+          required="true"
+        /><br />
+
+        <label for="password"> Password: </label>
+        <input
+          type="password"
+          name="password"
+          spellcheck="false"
+          required="true"
+        />
+
+        <input class="remember-me" type="checkbox" name="remember-me" />
+        <label for="remember-me">Remember Me</label>
+
+        <p class="error-message"></p>
+
+        <input class="btn btn-solid" type="submit" value="Create Account" />
+        <input
+          class="btn btn-tertiary"
+          type="button"
+          value="Already have an account ⟶"
+        />
+      </form>
+
+      <form class="form form-sign-in">
+        <h1>Sign In</h1>
+
+        <label for="email"> Email: </label>
+        <input
+          type="email"
+          name="email"
+          spellcheck="false"
+          required="true"
+        /><br />
+
+        <label for="password"> Password: </label>
+        <input
+          type="password"
+          name="password"
+          spellcheck="false"
+          required="true"
+        />
+
+        <input class="remember-me" type="checkbox" name="remember-me" />
+        <label for="remember-me">Remember Me</label>
+
+        <p class="error-message"></p>
+
+        <input class="btn btn-solid" type="button" value="Sign In" />
+        <input
+          class="btn btn-tertiary"
+          type="button"
+          value="Create Account ⟶"
+        />
+      </form>
+    </section>
+
+    <script type="module" src="../js/auth.js"></script>
+  </body>
+</html>

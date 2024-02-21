@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
 }
 
 html {
@@ -58,8 +58,71 @@ nav {
 .btn-solid {
   background-image: linear-gradient(to right bottom, #9894e5, #654fb3);
   padding: 0.6rem 1.8rem;
-  border-radius: .6rem;
+  border-radius: 0.6rem;
   font-weight: 500;
+}
+
+.btn-tertiary {
+  background-color: transparent;
+  color: inherit;
+  border: 0;
+  color: #bebbbe;
+}
+
+.btn-tertiary:hover,
+.btn-tertiary:active {
+  text-decoration: underline;
+}
+
+.btn-toggle {
+  display: none;
+  width: 3.2rem;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.65rem;
+  position: relative;
+}
+
+.btn-toggle .bar {
+  height: 0.32rem;
+  border-radius: 100vw;
+  background-color: #f7f7f7;
+}
+
+.btn-toggle .toggle-options {
+  display: none;
+  position: absolute;
+  background-color: #191529;
+  width: 16rem;
+  top: 4rem;
+  right: 0;
+  border-radius: 1rem;
+}
+
+.btn-toggle .toggle-options::-webkit-scrollbar {
+  width: 0;
+}
+
+.btn-toggle .toggle-options .option {
+  padding: 1rem 1.6rem;
+}
+
+.btn-toggle .toggle-options .option:hover,
+.btn-toggle .toggle-options .option:active {
+  background-color: #2e274c;
+  border-radius: 1rem;
+  outline: 1px solid #453b74;
+}
+
+.btn-toggle .toggle-options .option.logout,
+.btn-toggle .toggle-options .option.logout {
+  color: #f07a7a;
+}
+
+.btn-toggle .toggle-options .option.logout:hover,
+.btn-toggle .toggle-options .option.logout:active {
+  background-color: hsla(0, 100%, 50%, 0.1);
+  outline: 1px solid #f07a7a;
 }
 
 main {
@@ -79,7 +142,7 @@ main {
 }
 
 .wrapper-url-shortner input {
-  width:  100%;
+  width: 100%;
   padding: 1.3rem 1rem;
   font-size: 1.6rem;
   border-radius: 0.6rem 0 0 0.6rem;
@@ -106,7 +169,7 @@ main {
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem
+  gap: 1.2rem;
 }
 
 .wrapper-url-history .short-url-bar {
@@ -119,7 +182,8 @@ main {
 }
 
 .short-url-bar .container-content {
-  width: calc(100% - 4.5rem);
+  width: 100%;
+  overflow: hidden;
 }
 
 .short-url-bar .container-content .short-url {
@@ -127,7 +191,8 @@ main {
   font-size: 1.8rem;
 }
 
-.short-url-bar .container-content .short-url:hover {
+.short-url-bar .container-content .short-url:hover,
+.short-url-bar .container-content .short-url:active {
   text-decoration: underline;
 }
 
@@ -142,25 +207,97 @@ main {
   text-overflow: ellipsis;
 }
 
-.short-url-bar .btn-copy-link {
+.short-url-bar .btn-container {
+  display: flex;
+  margin-right: -0.6rem;
+}
+
+.short-url-bar .btn-url-bar-action {
+  flex-shrink: 0;
   font-size: 2rem;
   display: grid;
   place-items: center;
-  width: 4.5rem;
+  width: 4rem;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  color: hsl(270, 15%, 62%);
+}
+
+.short-url-bar .btn-copy-link:hover,
+.short-url-bar .btn-copy-link:active {
+  color: #f7f7f7;
+}
+
+.short-url-bar .btn-delete-link {
+  display: none;
+}
+
+.short-url-bar .btn-delete-link:hover,
+.short-url-bar .btn-delete-link:active {
+  color: #f07a7a;
+}
+
+.form {
+  background-color: hsl(254, 33%, 14%);
+  margin: 4rem auto 0;
+  width: 48rem;
+  border: 2px solid #453b74;
+  padding: 2.4rem 2rem;
+  border-radius: 1rem;
+}
+
+.form-sign-up {
+  display: none;
+}
+
+.form h1 {
+  text-align: center;
+  margin-bottom: 2.4rem;
+}
+
+.form label {
+  color: #bebbbe;
+}
+
+.form input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.6rem;
+  border-radius: 0.8rem;
+  margin-bottom: 1.6rem;
+  /* border: 0; */
+}
+
+.form .remember-me {
+  width: initial;
+  margin-right: 0.4rem;
+  accent-color: #7465c3;
+}
+
+.form .error-message {
+  display: none;
+  color: #f07a7a;
+  margin-bottom: 1rem;
+}
+
+.form .btn-solid {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border: 0;
+}
+
+.form .btn-tertiary {
+  margin-bottom: 0;
+  border: 0;
 }
 
 @media (768px <= width <= 1100px) {
-
   main {
     padding: 6rem 8% 0;
   }
-
 }
 
 @media (480px <= width <= 768px) {
-
   main {
     padding: 6rem 5% 0;
   }
@@ -173,10 +310,17 @@ main {
     padding: 1.1rem 5%;
   }
 
+  .form {
+    width: 100%;
+    margin: 4rem auto;
+  }
+
+  .section-forms {
+    padding: 0 11.5%;
+  }
 }
 
-@media (width <= 480px){
-
+@media (width <= 480px) {
   main {
     padding: 6rem 4% 0;
   }
@@ -200,7 +344,7 @@ main {
   }
 
   .wrapper-url-shortner input {
-    border-radius: 0.6rem ;
+    border-radius: 0.6rem;
   }
 
   .btn-short-url {
@@ -208,4 +352,20 @@ main {
     width: 100%;
   }
 
+  .short-url-bar .btn-container {
+    margin-right: -0.8rem;
+  }
+
+  .short-url-bar .btn-url-bar-action {
+    width: 3.2rem;
+  }
+
+  .form {
+    width: 100%;
+    margin: 4rem auto;
+  }
+
+  .section-forms {
+    padding: 0 5%;
+  }
 }

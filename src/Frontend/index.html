@@ -1,54 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>K3 URL Shortner</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
-  <script src="https://kit.fontawesome.com/85e64bd5fe.js" crossorigin="anonymous"></script>
-</head>
-<body>
-  <nav>
-    <div class="brand-logo">
-      <a href="#">K3 URL Shortner</a>
-    </div>
-    <div class="btn-switch-theme">
-      <i class="fa-solid fa-sun"></i>
-    </div>
-    <a href="#" class="btn-sign-in btn btn-solid">Log In</a>
-  </nav>
-
-  <main>
-    <div class="wrapper-url-shortner">
-      <h1>K3's Custom URL Shortner</h1>
-      <div class="input-bar">
-        <input type="text" spellcheck="false" placeholder="Enter URL Here">
-        <div class="btn-short-url btn btn-solid">Short URL</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K3 URL Shortner</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon" />
+    <script
+      src="https://kit.fontawesome.com/85e64bd5fe.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav>
+      <div class="brand-logo">
+        <a href="/">K3 URL Shortner</a>
       </div>
-      <p class="response-message">
-        <i class="fa-solid fa-circle-check"></i>&nbsp;
-        Shortned URL Sucessfully Copied to the Clipboard
-      </p>
-    </div>
-
-    <div class="wrapper-url-history">
-      <!-- <div class="short-url-bar">
-        <div class="container-content">
-          <a class="short-url" href="http://localhost:8000/szDXX" target="_blank">
-            k3url.onrender.com/szDXX
-          </a><br>
-          <a class="full-url" href="https://expressjs.com/" target="_blank">
-            https://expressjs.com/
-          </a>
+      <div class="btn-switch-theme">
+        <i class="fa-solid fa-sun"></i>
+      </div>
+      <a href="/u/auth" class="btn-sign-in btn btn-solid">Log In</a>
+      <div class="btn-toggle btn">
+        <div class="bar bar-1"></div>
+        <div class="bar bar-2"></div>
+        <div class="bar bar-3"></div>
+        <div class="toggle-options">
+          <div class="option logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp; Logout
+          </div>
         </div>
-        <div class="btn-copy-link">
-          <i class="fa-solid fa-link" aria-hidden="true"></i>
-        </div>
-      </div> -->
-    </div>
-  </main>
+      </div>
+    </nav>
 
-  <script type="module" src="js/script.js"></script>
-</body>
+    <main>
+      <div class="wrapper-url-shortner">
+        <h1>K3's Custom URL Shortner</h1>
+        <div class="input-bar">
+          <input type="text" spellcheck="false" placeholder="Enter URL Here" />
+          <div class="btn-short-url btn btn-solid">Short URL</div>
+        </div>
+        <p class="response-message">
+          <i class="fa-solid fa-circle-check"></i>&nbsp; Shortned URL
+          Sucessfully Copied to the Clipboard
+        </p>
+      </div>
+
+      <div class="wrapper-url-history">
+        <!-- URL BAR -->
+      </div>
+    </main>
+
+    <script type="module" src="js/script.js"></script>
+  </body>
 </html>
