@@ -7,12 +7,12 @@ const serverURL = "https://k3url.onrender.com";
 import { loadData, addUrlBar, saveHistory, getHistory } from "./utils.js";
 
 // elements
-const urlInput = document.querySelector(".wrapper-url-shortner input");
+const urlInput = document.querySelector(".wrapper-url-shortener input");
 const btnShortUrl = document.querySelector(
-  ".wrapper-url-shortner .btn-short-url"
+  ".wrapper-url-shortener .btn-short-url"
 );
 const responseMessage = document.querySelector(
-  ".wrapper-url-shortner .response-message"
+  ".wrapper-url-shortener .response-message"
 );
 
 const navToggleBtn = document.querySelector("nav .btn-toggle");
