@@ -45,6 +45,13 @@ nav {
   text-decoration: none;
   font-size: 2.4rem;
   font-weight: 600;
+  display: flex;
+  gap: 1.6rem;
+}
+
+.brand-logo img {
+  width: 3.2rem;
+  margin-top: -0.2rem;
 }
 
 .btn-switch-theme {
@@ -309,13 +316,9 @@ main {
   }
 }
 
-@media (480px <= width <= 768px) {
+@media (width <= 768px) {
   main {
     padding: 6rem 5% 0;
-  }
-
-  .brand-logo a {
-    font-size: 2.2rem;
   }
 
   nav {
@@ -329,25 +332,6 @@ main {
 
   .section-forms {
     padding: 0 11.5%;
-  }
-}
-
-@media (width <= 480px) {
-  main {
-    padding: 6rem 4% 0;
-  }
-
-  nav {
-    padding: 1.1rem 4.6%;
-    gap: 1.4rem;
-  }
-
-  .brand-logo a {
-    font-size: 2.2rem;
-  }
-
-  .btn-switch-theme {
-    font-size: 2.1rem;
   }
 
   .input-bar {
@@ -363,6 +347,34 @@ main {
     border-radius: 0.6rem;
     width: 100%;
   }
+}
+
+@media (width <= 480px) {
+  main {
+    padding: 6rem 4% 0;
+  }
+
+  nav {
+    padding: 1.1rem 4.6%;
+    gap: 1.4rem;
+  }
+
+  .brand-logo img {
+    width: 3.6rem;
+    margin: 0.15rem;
+  }
+
+  .brand-logo span {
+    display: none;
+  }
+
+  .btn-toggle .toggle-options {
+    top: 4.3rem;
+  }
+
+  .btn-switch-theme {
+    font-size: 2.1rem;
+  }
 
   .short-url-bar .btn-container {
     margin-right: -0.8rem;
@@ -370,11 +382,6 @@ main {
 
   .short-url-bar .btn-url-bar-action {
     width: 3.2rem;
-  }
-
-  .form {
-    width: 100%;
-    margin: 4rem auto;
   }
 
   .section-forms {
