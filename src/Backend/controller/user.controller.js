@@ -9,8 +9,6 @@ const generateAccessAndRefreshTokens = async userId => {
     const user = await User.findById(userId);
     const accessToken = user.generateAccessToken();
     const refreshToken = user.generateRefreshToken();
-    user.refreshToken = refreshToken;
-    await user.save({ validateBeforeSave: false });
     return { accessToken, refreshToken };
   } catch (error) {
     return res
@@ -62,9 +60,7 @@ const signupHandler = asyncHandler(async (req, res) => {
     shortIds: presavedShortIds,
   });
 
-  const createdUser = await User.findById(user._id).select(
-    "-password -refreshToken"
-  );
+  const createdUser = await User.findById(user._id).select("-password");
 
   if (!createdUser) {
     throw new Error(500, "Something went wrong");
@@ -99,7 +95,7 @@ const signupHandler = asyncHandler(async (req, res) => {
 // ----- Login Handler ----- //
 const loginHandler = asyncHandler(async (req, res) => {
   const { email, password, history } = req.body;
-  const { isValid, message } = isFormValid(req.body);
+  const { isValid, message } = isFormValid({ email, password });
 
   if (!isValid) {
     return res.status(400).json(new ApiResponse(400, {}, message));
@@ -126,9 +122,7 @@ const loginHandler = asyncHandler(async (req, res) => {
     user._id
   );
 
-  let loggedInUser = await User.findById(user._id).select(
-    "-password -refreshToken"
-  );
+  let loggedInUser = await User.findById(user._id).select("-password");
 
   // updating presaved short ids
   const presavedShortIds = history.map(data => data.shortId);
@@ -142,7 +136,7 @@ const loginHandler = asyncHandler(async (req, res) => {
 
   loggedInUser = await User.findByIdAndUpdate(user._id, {
     shortIds: updatedShortIds,
-  }).select("-password -refreshToken");
+  }).select("-password");
 
   const newHistory = await Link.find({
     shortId: { $in: updatedShortIds },
@@ -170,6 +164,9 @@ const loginHandler = asyncHandler(async (req, res) => {
       )
     );
 });
+
+// ----- Get User Data Handler ----- //
+const getUserDataHandler = asyncHandler(async (req, res) => {});
 
 // ----- Logout Handler ----- //
 const logoutHandler = asyncHandler(async (req, res) => {
@@ -245,8 +242,9 @@ const removeUrlHandler = asyncHandler(async (req, res) => {
 });
 
 export {
-  signupHandler,
   loginHandler,
+  signupHandler,
+  getUserDataHandler,
   logoutHandler,
   addUrlHandler,
   removeUrlHandler,

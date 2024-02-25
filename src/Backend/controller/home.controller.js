@@ -4,22 +4,23 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import crypto from "crypto";
 import urlcheck from "is-a-url";
 
+// ----- Short URL Handler ----- //
 const shortUrlHandler = asyncHandler(async (req, res) => {
   const url = req.body.url;
 
   if (url === undefined || url.trim() === "") {
-    return res.status(400).json((400, {}, "Url is required to shorten it"));
+    return res.status(400).json((400, {}, "URL is required to shorten it"));
   }
 
   if (!urlcheck(url)) {
-    return res.status(404).json(
+    return res.status(400).json(
       new ApiResponse(
-        404,
+        400,
         {
           shortId: null,
           url,
         },
-        "Given Url is nor Valid"
+        "Given URL is not Valid"
       )
     );
   }
@@ -50,7 +51,8 @@ const shortUrlHandler = asyncHandler(async (req, res) => {
   );
 });
 
-const getUrlHandler = asyncHandler(async (req, res) => {
+// ----- Get URL Handler ----- //
+const redirectUrlHandler = asyncHandler(async (req, res) => {
   const shortId = req.params.shortId;
 
   if (shortId === undefined || shortId.trim() === "") {
@@ -78,4 +80,4 @@ const getUrlHandler = asyncHandler(async (req, res) => {
   return res.redirect(301, entry.url);
 });
 
-export { shortUrlHandler, getUrlHandler };
+export { shortUrlHandler, redirectUrlHandler };

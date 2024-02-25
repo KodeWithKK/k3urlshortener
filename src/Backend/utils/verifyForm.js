@@ -1,12 +1,10 @@
 function isFormValid({ name, email, password }) {
   let isNameValid;
-  if (name) isNameValid = /^[a-zA-Z0-9_. ]{2,}$/.test(name);
-
+  if (name) isNameValid = /^[a-zA-Z0-9_. ]{2,20}$/.test(name);
+  const isPasswordValid = /^[a-zA-Z0-9./!@#$%^&*]+$/.test(password);
   const isEmailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
     email
   );
-
-  const isPasswordValid = /^[a-zA-Z0-9./!@#$%^&*]+$/.test(password);
 
   const result = { isValid: true, message: "Form is Valid!" };
 
@@ -17,7 +15,7 @@ function isFormValid({ name, email, password }) {
       result.message = "Name is Required!";
     } else if (name.length <= 2) {
       result.message = "Name is too Short!";
-    } else if (name.length >= 15) {
+    } else if (name.length >= 20) {
       result.message = "Name is too Long!";
     } else {
       result.message = "Invalid Name!";
