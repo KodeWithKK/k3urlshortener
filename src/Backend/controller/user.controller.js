@@ -169,14 +169,7 @@ const loginHandler = asyncHandler(async (req, res) => {
 const getUserDataHandler = asyncHandler(async (req, res) => {});
 
 // ----- Logout Handler ----- //
-const logoutHandler = asyncHandler(async (req, res) => {
-  // removing the referesh token from db
-  await User.findByIdAndUpdate(req.user._id, {
-    $set: {
-      refreshToken: undefined,
-    },
-  });
-
+const logoutHandler = (req, res) => {
   const options = {
     httpOnly: true,
     secure: true,
@@ -187,7 +180,7 @@ const logoutHandler = asyncHandler(async (req, res) => {
     .clearCookie("accessToken", options)
     .clearCookie("refreshToken", options)
     .json(new ApiResponse(200, {}, "User logged Out"));
-});
+};
 
 // ------ Add Url Handler ----- //
 const addUrlHandler = asyncHandler(async (req, res) => {

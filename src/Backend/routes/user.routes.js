@@ -13,10 +13,10 @@ const router = Router();
 
 router.route("/login").post(loginHandler);
 router.route("/signup").post(signupHandler);
+router.route("/logout").post(logoutHandler);
 
 // secured route
 router.route("/data").get(verifyJWT, getUserDataHandler);
-router.route("/logout").post(verifyJWT, logoutHandler);
 router.route("/a/:shortId").post(verifyJWT, addUrlHandler);
 router.route("/r/:shortId").post(verifyJWT, removeUrlHandler);
 

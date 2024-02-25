@@ -1,12 +1,11 @@
 "use strict";
 
-// const serverURL = 'https://k3url.vercel.com';
-const serverURL = "https://k3url.onrender.com";
-// const serverURL = "http://localhost:8000";
+import { loadUserData } from "./utils/loadUserData.js";
+import { addUrlBar } from "./utils/addUrlBar.js";
+import { saveHistory, getHistory } from "./utils/memoryOperations.js";
+import { serverURL } from "./const.js";
 
-import { loadData, addUrlBar, saveHistory, getHistory } from "./utils.js";
-
-// elements
+// ----- elements ------ //
 const urlInput = document.querySelector(".wrapper-url-shortener input");
 const btnShortUrl = document.querySelector(
   ".wrapper-url-shortener .btn-short-url"
@@ -20,9 +19,9 @@ const navToggleBtnOptions = navToggleBtn.querySelector(".toggle-options");
 const btnLogout = navToggleBtnOptions.querySelector(".logout");
 
 // loading user data
-loadData();
+loadUserData();
 
-// Event listeners
+// ----- Event listeners ----- //
 navToggleBtn.addEventListener("click", () => {
   if (window.getComputedStyle(navToggleBtnOptions).display == "block") {
     navToggleBtnOptions.style.display = "none";
@@ -44,7 +43,7 @@ btnLogout.addEventListener("click", async () => {
 });
 
 btnShortUrl.addEventListener("click", async () => {
-  const url = urlInput.value;
+  const url = urlInput.value.trim();
   const data = { url };
 
   if (url) {
@@ -60,8 +59,8 @@ btnShortUrl.addEventListener("click", async () => {
     })
       .then(res => res.json())
       .then(async res => {
-        const shortId = res.data.shortId;
-        const url = res.data.url;
+        const shortId = res.data?.shortId;
+        const url = res.data?.url;
         btnShortUrl.textContent = "Short URL";
 
         if (!shortId) {
@@ -98,11 +97,9 @@ btnShortUrl.addEventListener("click", async () => {
   }
 });
 
-// loading url history
+// ----- loading url history ----- //
 const history = getHistory();
 
 for (const { shortId, url } of history) {
   addUrlBar(shortId, url);
 }
-
-export { serverURL };

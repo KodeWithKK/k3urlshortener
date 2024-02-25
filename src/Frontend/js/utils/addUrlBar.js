@@ -1,22 +1,4 @@
-import { serverURL } from "./script.js";
-
-const wrapperUrlHistory = document.querySelector(".wrapper-url-history");
-const navToggleBtn = document.querySelector("nav .btn-toggle");
-const navSigninBtn = document.querySelector("nav .btn-sign-in");
-
-const loadData = () => {
-  const userData = JSON.parse(localStorage.getItem("userData"));
-
-  if (userData) {
-    wrapperUrlHistory.classList.add("contains-user");
-    navToggleBtn.style.display = "flex";
-    navSigninBtn.style.display = "none";
-  } else {
-    wrapperUrlHistory.classList.remove("contains-user");
-    navToggleBtn.style.display = "none";
-    navSigninBtn.style.display = "block";
-  }
-};
+import { serverURL } from "../const.js";
 
 const addUrlBar = (shortId, url) => {
   const shortUrl = `${serverURL + "/" + shortId}`;
@@ -24,7 +6,7 @@ const addUrlBar = (shortId, url) => {
   const urlBarHtml = `
     <div class="short-url-bar">
       <div class="container-content">
-        <a class="short-url" href="${shortUrl}" target="_blank">
+        <a class="short-url" href="${shortUrl}" target="_blank" rel="noopener noreferrer">
           k3url.onrender.com/${shortId}
         </a><br>
         <a class="full-url" href="${url}" target="_blank">
@@ -42,6 +24,7 @@ const addUrlBar = (shortId, url) => {
     </div>
   `;
 
+  const wrapperUrlHistory = document.querySelector(".wrapper-url-history");
   wrapperUrlHistory.insertAdjacentHTML("afterbegin", urlBarHtml);
 
   const currShortUrlBar = wrapperUrlHistory.querySelector(
@@ -54,14 +37,12 @@ const addUrlBar = (shortId, url) => {
     ".short-url-bar:first-child .btn-delete-link"
   );
 
-  if (wrapperUrlHistory.classList.contains("contains-user")) {
+  if (wrapperUrlHistory.classList.contains("contains-user"))
     btnDeleteLink.style.display = "grid";
-  } else {
-    btnDeleteLink.style.display = "none";
-  }
+  else btnDeleteLink.style.display = "none";
 
   btnCopyLink.addEventListener("click", async () => {
-    await navigator.clipboard.writeText(`${shortUrl}`);
+    await navigator.clipboard.writeText(shortUrl);
   });
 
   btnDeleteLink.addEventListener("click", async () => {
@@ -81,12 +62,4 @@ const addUrlBar = (shortId, url) => {
   });
 };
 
-function saveHistory(newHistory) {
-  localStorage.setItem("history", JSON.stringify(newHistory));
-}
-
-function getHistory() {
-  return JSON.parse(localStorage.getItem("history")) ?? [];
-}
-
-export { loadData, addUrlBar, saveHistory, getHistory };
+export { addUrlBar };

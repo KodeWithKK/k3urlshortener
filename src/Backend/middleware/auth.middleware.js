@@ -28,7 +28,6 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
 
     decodedUserId = decodedAccessToken?._id;
   } catch (error) {
-    // decoding access token failed
     if (error?.name === "TokenExpiredError") {
       const refreshToken = req.cookies?.refreshToken;
 
@@ -48,7 +47,6 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
         decodedUserId = decodedRefreshToken?._id;
         isNewAccessTokenGenerated = true;
       } catch (error) {
-        // decoding refresh token failed
         return res
           .status(401)
           .json(new ApiResponse(401, {}, "User Session has Expired!"));

@@ -20,7 +20,6 @@ function displayErrorMssg(elm, mssg) {
 }
 
 // --------- SIGNIN ---------- //
-
 signinFormSignupBtn.addEventListener("click", () => {
   signinForm.style.display = "none";
   signupForm.style.display = "block";
@@ -62,7 +61,6 @@ signinFormSigninBtn.addEventListener("click", async e => {
 });
 
 // --------- SIGNUP ---------- //
-
 signupFormSigninBtn.addEventListener("click", () => {
   signupForm.style.display = "none";
   signinForm.style.display = "block";
