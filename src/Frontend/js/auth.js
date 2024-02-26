@@ -2,12 +2,12 @@
 
 const signinForm = document.querySelector(".form-sign-in");
 const signinFormSigninBtn = signinForm.querySelector(".btn-solid");
-const signinFormSignupBtn = signinForm.querySelector(".btn-tertiary");
+const signinFormSignupBtn = signinForm.querySelector(".btn-text");
 const signinFormErrorMssg = signinForm.querySelector(".error-message");
 
 const signupForm = document.querySelector(".form-sign-up");
 const signupFormSignupBtn = signupForm.querySelector(".btn-solid");
-const signupFormSigninBtn = signupForm.querySelector(".btn-tertiary");
+const signupFormSigninBtn = signupForm.querySelector(".btn-text");
 const signupFormErrorMssg = signupForm.querySelector(".error-message");
 
 function displayErrorMssg(elm, mssg) {

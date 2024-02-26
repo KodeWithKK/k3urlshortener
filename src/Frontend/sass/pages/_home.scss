@@ -1,0 +1,82 @@
+main {
+  width: 100%;
+  padding: 6rem 15% 0;
+
+  @include screen(768px, 1100px) {
+    padding: 6rem 8% 0;
+  }
+
+  @include screenMaxWidth(768px) {
+    padding: 6rem 5% 0;
+  }
+
+  @include screenMaxWidth(480px) {
+    padding: 6rem 4% 0;
+  }
+
+  .wrapper-url-shortener {
+    h1 {
+      text-align: center;
+      text-wrap: pretty;
+    }
+
+    h2 {
+      color: #bfb0d6;
+      text-align: center;
+      text-wrap: pretty;
+      margin-top: 0.8rem;
+      margin-bottom: 2.8rem;
+      font-weight: 400;
+    }
+
+    .input-bar {
+      display: flex;
+      margin-bottom: 1rem;
+
+      @include screenMaxWidth(768px) {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      input {
+        width: 100%;
+        padding: 1.3rem 1rem;
+        font-size: 1.6rem;
+        border-radius: 0.6rem 0 0 0.6rem;
+        border: 0;
+        /* outline: 0; */
+
+        @include screenMaxWidth(768px) {
+          border-radius: 0.6rem;
+        }
+      }
+
+      .btn-short-url {
+        background-image: linear-gradient(to right bottom, #745fcc, #654fb3);
+        border-radius: 0 0.6rem 0.6rem 0;
+        padding: 1.3rem 0rem;
+        width: 14rem;
+        text-align: center;
+        flex-shrink: 0;
+
+        @include screenMaxWidth(768px) {
+          border-radius: 0.6rem;
+          width: 100%;
+        }
+      }
+    }
+
+    .response-message {
+      color: #f07a7a;
+      display: none;
+      transition: all 0.3s ease;
+    }
+  }
+
+  .wrapper-url-history {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+}

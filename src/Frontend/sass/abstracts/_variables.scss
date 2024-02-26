@@ -1,0 +1,13 @@
+:root {
+  // --colorBlack: #08080A;
+  --colorBlack: #070708;
+  --colorWhite: hsl(0deg, 0%, 92%);
+  --colorGreyishWhite: #cccccc;
+  --colorGrey: #333333;
+
+  --colorBgDarker: var(--colorBlack);
+  --colorBgLighter: hsl(240deg 10% 9%);
+  --colorText: var(--colorGreyishWhite);
+  --colorHeadings: var(--colorWhite);
+  --colorAccent: hsl(21 21% 48% / 1);
+}

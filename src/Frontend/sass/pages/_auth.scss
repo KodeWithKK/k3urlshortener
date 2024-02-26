@@ -1,0 +1,68 @@
+.section-forms {
+  @include screenMaxWidth(768px) {
+    padding: 0 11.5%;
+  }
+
+  @include screenMaxWidth(480px) {
+    padding: 0 5%;
+  }
+
+  .form {
+    background-color: hsl(254, 33%, 14%);
+    margin: 4rem auto 0;
+    width: 48rem;
+    border: 2px solid #453b74;
+    padding: 2.4rem 2rem;
+    border-radius: 1rem;
+
+    @include screenMaxWidth(768px) {
+      width: 100%;
+      margin: 4rem auto;
+    }
+
+    &.form-sign-up {
+      display: none;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2.4rem;
+    }
+
+    label {
+      color: #bebbbe;
+    }
+
+    input {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.6rem;
+      border-radius: 0.8rem;
+      margin-bottom: 1.6rem;
+      /* border: 0; */
+    }
+
+    .remember-me {
+      width: initial;
+      margin-right: 0.4rem;
+      accent-color: #7465c3;
+    }
+
+    .error-message {
+      display: none;
+      color: #f07a7a;
+      margin-bottom: 1rem;
+    }
+
+    .btn-solid {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      border: 0;
+    }
+
+    .btn-tertiary {
+      margin-bottom: 0;
+      border: 0;
+    }
+  }
+}

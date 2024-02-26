@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node src/Backend/index.js",
+    "compile:sass": "node-sass src/Frontend/sass/main.scss src/Frontend/css/styles.css -w",
     "dev": "nodemon src/Backend/index.js",
     "build": "npm install"
   },
@@ -20,5 +21,8 @@
     "is-a-url": "^1.0.1-a",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.1.1"
+  },
+  "devDependencies": {
+    "node-sass": "^9.0.0"
   }
 }

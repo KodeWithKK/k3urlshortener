@@ -1,0 +1,74 @@
+.short-url-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #2e274c;
+  border: 1px solid #453b74;
+  border-radius: 1rem;
+
+  .container-content {
+    width: 100%;
+    overflow: hidden;
+
+    .short-url {
+      font-weight: 500;
+      font-size: 1.8rem;
+
+      &:hover,
+      &:active {
+        text-decoration: underline;
+      }
+    }
+
+    .full-url {
+      display: block;
+      font-weight: 300;
+      font-size: 1.5rem;
+      color: hsl(173, 40%, 73%);
+      margin-top: 0.6rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .btn-container {
+    display: flex;
+    margin-right: -0.6rem;
+
+    @include screenMaxWidth(480px) {
+      margin-right: -0.8rem;
+    }
+
+    .btn-url-bar-action {
+      flex-shrink: 0;
+      font-size: 2rem;
+      display: grid;
+      place-items: center;
+      width: 4rem;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      color: hsl(270, 15%, 62%);
+
+      @include screenMaxWidth(480px) {
+        width: 3.2rem;
+      }
+    }
+
+    .btn-copy-link {
+      &:hover,
+      &:active {
+        color: #f7f7f7;
+      }
+    }
+
+    .btn-delete-link {
+      display: none;
+
+      &:hover,
+      &:active {
+        color: #f07a7a;
+      }
+    }
+  }
+}

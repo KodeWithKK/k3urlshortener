@@ -1,0 +1,29 @@
+@mixin phone {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin screen($min-width, $max-width) {
+  @media (min-width: $min-width) and (max-width: $max-width) {
+    @content;
+  }
+}
+
+@mixin screenMaxWidth($max-width) {
+  @media (max-width: $max-width) {
+    @content;
+  }
+}
+
+@mixin screenMinWidth($min-width) {
+  @media (min-width: $min-width) {
+    @content;
+  }
+}
