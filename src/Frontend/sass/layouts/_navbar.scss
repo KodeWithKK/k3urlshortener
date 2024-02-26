@@ -47,6 +47,10 @@ nav {
       font-weight: 400;
       line-height: 1.2;
       color: #bfb0d6;
+
+      @include screenMaxWidth(480px) {
+        display: none;
+      }
     }
   }
 
