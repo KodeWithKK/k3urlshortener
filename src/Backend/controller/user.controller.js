@@ -51,24 +51,42 @@ const signupHandler = asyncHandler(async (req, res) => {
   }
 
   // create user
-  const presavedShortIds = history.map(data => data.shortId);
-
   const user = await User.create({
     name,
     email,
     password,
-    shortIds: presavedShortIds,
   });
+
+  // saving up previously generated history
+  const newHistory = [];
+  history ??= [];
+
+  for (const data of history) {
+    const { shortId, fullUrl } = data;
+
+    if (shortId && fullUrl) {
+      const link = await Link.findOne({ shortId, fullUrl, owner: null });
+
+      if (link) {
+        link.owner = user._id;
+        await link.save();
+        newHistory.push(data);
+      }
+    }
+  }
+
+  user.history = newHistory;
+  await user.save();
+
+  const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
+    user._id
+  );
 
   const createdUser = await User.findById(user._id).select("-password");
 
   if (!createdUser) {
     throw new Error(500, "Something went wrong");
   }
-
-  const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
-    user._id
-  );
 
   const options = {
     httpOnly: true, // cookie cannot be accessed via client-side scripts
@@ -122,25 +140,28 @@ const loginHandler = asyncHandler(async (req, res) => {
     user._id
   );
 
-  let loggedInUser = await User.findById(user._id).select("-password");
+  // saving up previously generated history
+  const newHistory = [];
+  user.history ??= [];
 
-  // updating presaved short ids
-  const presavedShortIds = history.map(data => data.shortId);
-  const updatedShortIds = loggedInUser.shortIds;
+  for (const data of history) {
+    const { shortId, fullUrl } = data;
 
-  presavedShortIds.forEach(shortId => {
-    if (!updatedShortIds.includes(shortId)) {
-      updatedShortIds.push(shortId);
+    if (shortId && fullUrl) {
+      const link = await Link.findOne({ shortId, fullUrl, owner: null });
+
+      if (link) {
+        link.owner = user._id;
+        await link.save();
+        newHistory.push(data);
+      }
     }
-  });
+  }
 
-  loggedInUser = await User.findByIdAndUpdate(user._id, {
-    shortIds: updatedShortIds,
-  }).select("-password");
+  user.history.push(...newHistory);
+  await user.save();
 
-  const newHistory = await Link.find({
-    shortId: { $in: updatedShortIds },
-  }).select("shortId url -_id");
+  let loggedInUser = await User.findById(user._id).select("-password");
 
   const options = {
     httpOnly: true,
@@ -158,7 +179,7 @@ const loginHandler = asyncHandler(async (req, res) => {
           user: loggedInUser,
           accessToken,
           refreshToken,
-          history: newHistory,
+          history: loggedInUser.history,
         },
         "User logged In successfully"
       )
@@ -192,8 +213,25 @@ const addUrlHandler = asyncHandler(async (req, res) => {
       .json(new ApiResponse(400, {}, "Short Id is required!"));
   }
 
+  const link = await Link.findOne({ shortId });
+
+  if (!link) {
+    return res
+      .status(404)
+      .json(new ApiResponse(404, {}, "Given ShortId doesn't Exists!"));
+  }
+
+  if (link.owner) {
+    return res
+      .status(400)
+      .json(new ApiResponse(400, {}, "Given ShortId already has a owner!"));
+  }
+
+  link.owner = req.user._id;
+  await link.save();
+
   await User.findByIdAndUpdate(req.user._id, {
-    $push: { shortIds: shortId },
+    $push: { history: { shortId: link.shortId, fullUrl: link.fullUrl } },
   });
 
   return res
@@ -202,7 +240,7 @@ const addUrlHandler = asyncHandler(async (req, res) => {
       new ApiResponse(
         200,
         {},
-        "Short Id Added successfully to the User Account"
+        "Short URL successfully Added to the User Account"
       )
     );
 });
@@ -217,11 +255,15 @@ const removeUrlHandler = asyncHandler(async (req, res) => {
       .json(new ApiResponse(400, {}, "Short Id is required!"));
   }
 
-  await User.findByIdAndUpdate(req.user._id, {
-    $pull: { shortIds: shortId },
-  });
+  const link = await Link.findOne({ shortId });
 
-  await Link.findOneAndDelete({ shortId });
+  if (link.owner.equals(req.user._id)) {
+    await User.findByIdAndUpdate(req.user._id, {
+      $pull: { history: { shortId } },
+    });
+
+    await Link.findOneAndDelete({ shortId });
+  }
 
   return res
     .status(200)

@@ -13,15 +13,18 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      lowercase: true,
       unique: true,
     },
     password: {
       type: String,
       required: true,
     },
-    shortIds: [
+    history: [
       {
-        type: String,
+        _id: false,
+        shortId: { type: String },
+        fullUrl: { type: String },
       },
     ],
   },

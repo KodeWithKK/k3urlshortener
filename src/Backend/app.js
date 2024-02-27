@@ -41,6 +41,12 @@ if (process.env.NODE_ENV == "production") {
 app.use("/", homeRouter);
 app.use("/u", authRouter);
 
+// Centralized error-handling middleware
+// Note: Its defined after all route handlers
+// app.use((err, req, res, next) => {
+//   res.status(500).json({ error: "Internal Server Error", message: err });
+// });
+
 export { app };
 
 /* ======== NOTES ======== */
@@ -48,7 +54,7 @@ export { app };
 
 01 - Why does dotenv config path is './src/.env' and not './.env'?
 Ans: Here's how the resolution works:
-  - The './src/Backend/.env' path is relative to the current working directory.
+  - The './src/.env' path is relative to the current working directory.
   - When you execute your Node.js script, the current working directory is the directory from which you run the script.
 
 */

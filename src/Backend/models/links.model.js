@@ -1,23 +1,31 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const linkSchema = mongoose.Schema({
-  shortId: {
-    type: String,
-    required: true,
-    trim: true,
-    unique: true
+const linkSchema = mongoose.Schema(
+  {
+    shortId: {
+      type: String,
+      required: true,
+      trim: true,
+      unique: true,
+    },
+    fullUrl: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    visitHistory: [
+      {
+        timestamp: { type: Number },
+      },
+    ],
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
+    },
   },
-  url: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  visitHistory: [
-    {
-      timestamp: { type: Number }
-    }
-  ]
-}, { timestamps: true});
+  { timestamps: true }
+);
 
 export const Link = mongoose.model("Link", linkSchema);
 // mongoose will look for db collection name 'links' as moogose pluralize

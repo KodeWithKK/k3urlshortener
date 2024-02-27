@@ -6,13 +6,13 @@ import urlcheck from "is-a-url";
 
 // ----- Short URL Handler ----- //
 const shortUrlHandler = asyncHandler(async (req, res) => {
-  const url = req.body?.url;
+  const fullUrl = req.body?.fullUrl;
 
-  if (!url) {
+  if (!fullUrl) {
     return res.status(400).json((400, {}, "URL is required to shorten it"));
   }
 
-  if (!urlcheck(url)) {
+  if (!urlcheck(fullUrl)) {
     return res
       .status(400)
       .json(new ApiResponse(400, {}, "Given URL is not Valid"));
@@ -29,21 +29,21 @@ const shortUrlHandler = asyncHandler(async (req, res) => {
   };
 
   const shortId = await getUniqueId();
-  await Link.create({ shortId, url });
+  await Link.create({ shortId, fullUrl });
 
   return res.status(201).json(
     new ApiResponse(
       201,
       {
         shortId,
-        url,
+        fullUrl,
       },
       "URL is Shortned Successfully"
     )
   );
 });
 
-// ----- Get URL Handler ----- //
+// ----- Redirect URL Handler ----- //
 const redirectUrlHandler = asyncHandler(async (req, res) => {
   const shortId = req.params?.shortId.trim();
 
@@ -69,7 +69,7 @@ const redirectUrlHandler = asyncHandler(async (req, res) => {
       .json(new ApiResponse(404, {}, "Requested URL does not Exists"));
   }
 
-  return res.redirect(301, entry.url);
+  return res.redirect(301, entry?.fullUrl);
 });
 
 export { shortUrlHandler, redirectUrlHandler };
