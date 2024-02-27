@@ -12,9 +12,6 @@
 
 h2 {
   font-size: 2.4rem; }
-  @media (max-width: 768px) {
-    h2 {
-      font-size: 2.2rem; } }
 
 a {
   color: inherit;
@@ -87,23 +84,29 @@ body {
 
 .btn-toggle {
   display: none;
-  width: 3.2rem;
   flex-direction: column;
   justify-content: space-between;
-  gap: 0.65rem;
-  position: relative; }
+  position: relative;
+  width: 3rem;
+  gap: 0.75rem; }
   .btn-toggle .bar {
     height: 0.32rem;
     border-radius: 100vw;
     background-color: #f7f7f7; }
+    @media (max-width: 768px) {
+      .btn-toggle .bar {
+        background-color: #bfb0d6; } }
   .btn-toggle .toggle-options {
     display: none;
     position: absolute;
     background-color: #191529;
     width: 16rem;
-    top: 4.5rem;
+    top: 4.6rem;
     right: 0;
     border-radius: 1rem; }
+    @media (max-width: 480px) {
+      .btn-toggle .toggle-options {
+        top: 4.5rem; } }
     .btn-toggle .toggle-options::-webkit-scrollbar {
       width: 0; }
     .btn-toggle .toggle-options .option {
@@ -233,7 +236,7 @@ nav {
       color: #bfb0d6; }
       @media (max-width: 480px) {
         nav .brand-logo .brand-name {
-          display: none; } }
+          font-size: 1.6rem; } }
   nav .btn-switch-theme {
     font-size: 2.2rem; }
 

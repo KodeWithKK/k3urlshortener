@@ -1,6 +1,7 @@
 "use strict";
 
 import { loadUserData } from "./utils/loadUserData.js";
+import { loadHistory } from "./utils/loadHistory.js";
 import { addUrlBar } from "./utils/addUrlBar.js";
 import { saveHistory, getHistory } from "./utils/memoryOperations.js";
 import { serverURL } from "./const.js";
@@ -18,8 +19,9 @@ const navToggleBtn = document.querySelector("nav .btn-toggle");
 const navToggleBtnOptions = navToggleBtn.querySelector(".toggle-options");
 const btnLogout = navToggleBtnOptions.querySelector(".logout");
 
-// loading user data
+// loading data
 loadUserData();
+loadHistory();
 
 // ----- Event listeners ----- //
 navToggleBtn.addEventListener("click", () => {
@@ -43,10 +45,10 @@ btnLogout.addEventListener("click", async () => {
 });
 
 btnShortUrl.addEventListener("click", async () => {
-  const url = urlInput.value.trim();
-  const data = { url };
+  const fullUrl = urlInput.value.trim();
+  const data = { fullUrl };
 
-  if (url) {
+  if (fullUrl) {
     responseMessage.style.display = "none";
     btnShortUrl.textContent = "Processing...";
 
@@ -59,8 +61,7 @@ btnShortUrl.addEventListener("click", async () => {
     })
       .then(res => res.json())
       .then(async res => {
-        const shortId = res.data?.shortId;
-        const url = res.data?.url;
+        const { shortId, fullUrl } = res.data;
         btnShortUrl.textContent = "Short URL";
 
         if (!shortId) {
@@ -69,9 +70,9 @@ btnShortUrl.addEventListener("click", async () => {
         } else {
           const history = getHistory();
           responseMessage.style.display = "none";
-          addUrlBar(shortId, url);
+          addUrlBar(shortId, fullUrl);
           urlInput.value = ``;
-          history.push({ shortId, url });
+          history.push({ shortId, fullUrl });
           saveHistory(history);
 
           await fetch(`/u/a/${shortId}`, {
@@ -96,10 +97,3 @@ btnShortUrl.addEventListener("click", async () => {
     responseMessage.textContent = "URL is required to Short it!";
   }
 });
-
-// ----- loading url history ----- //
-const history = getHistory();
-
-for (const { shortId, url } of history) {
-  addUrlBar(shortId, url);
-}

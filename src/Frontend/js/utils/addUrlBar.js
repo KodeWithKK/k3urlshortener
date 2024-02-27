@@ -1,6 +1,7 @@
 import { serverURL } from "../const.js";
+import { saveHistory, getHistory } from "./memoryOperations.js";
 
-const addUrlBar = (shortId, url) => {
+const addUrlBar = (shortId, fullUrl) => {
   const shortUrl = `${serverURL + "/" + shortId}`;
 
   const urlBarHtml = `
@@ -9,8 +10,8 @@ const addUrlBar = (shortId, url) => {
         <a class="short-url" href="${shortUrl}" target="_blank" rel="noopener noreferrer">
           k3url.onrender.com/${shortId}
         </a><br>
-        <a class="full-url" href="${url}" target="_blank">
-          ${url}
+        <a class="full-url" href="${fullUrl}" target="_blank">
+          ${fullUrl}
         </a>
       </div>
       <div class="btn-container">
@@ -48,17 +49,21 @@ const addUrlBar = (shortId, url) => {
   btnDeleteLink.addEventListener("click", async () => {
     await fetch(`u/r/${shortId}`, {
       method: "POST",
-    }).catch(err => {
-      console.log(err);
-      alert("Something went wrong while saving generated URL to your Account!");
-    });
-
-    currShortUrlBar.remove();
-
-    const history = getHistory();
-    const shirtIdIdx = history.indexOf(shortId);
-    history.splice(shirtIdIdx, 1);
-    saveHistory(history);
+    })
+      .then(res => res.json())
+      .then(res => {
+        currShortUrlBar.remove();
+        const history = getHistory();
+        const shirtIdIdx = history.findIndex(data => data.shortId === shortId);
+        history.splice(shirtIdIdx, 1);
+        saveHistory(history);
+      })
+      .catch(err => {
+        console.log(err);
+        alert(
+          "Something went wrong while saving generated URL to your Account!"
+        );
+      });
   });
 };
 

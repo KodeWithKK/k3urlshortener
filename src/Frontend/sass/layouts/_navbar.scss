@@ -49,7 +49,7 @@ nav {
       color: #bfb0d6;
 
       @include screenMaxWidth(480px) {
-        display: none;
+        font-size: 1.6rem;
       }
     }
   }
