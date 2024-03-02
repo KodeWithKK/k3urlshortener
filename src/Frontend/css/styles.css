@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600;700&display=swap");
 :root {
   --colorBlack: #070708;
   --colorWhite: hsl(0deg, 0%, 92%);
@@ -10,8 +10,15 @@
   --colorHeadings: var(--colorWhite);
   --colorAccent: hsl(21 21% 48% / 1); }
 
+h1 {
+  font-size: 3.2rem;
+  user-select: none; }
+
 h2 {
   font-size: 2.4rem; }
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 2.3rem; } }
 
 a {
   color: inherit;
@@ -21,7 +28,7 @@ a {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Rubik", sans-serif; }
+  font-family: "Ubuntu", sans-serif; }
 
 html {
   font-size: 62.5%;
@@ -246,9 +253,10 @@ nav {
         display: flex;
         align-items: center;
         padding: 0.2rem 0;
-        border-radius: 0.4rem;
+        border-radius: 0.6rem;
         height: 3.5rem;
-        border: 1px solid transparent; }
+        border: 1px solid transparent;
+        user-select: none; }
         nav .nav-items .toggle-options .option:hover {
           background-color: #2e274c;
           border: 1px solid #453b74; }
@@ -273,16 +281,16 @@ nav {
 
 main {
   width: 100%;
-  padding: 6rem 15% 0; }
+  padding: 5.4rem 15% 0; }
   @media (min-width: 768px) and (max-width: 1100px) {
     main {
-      padding: 6rem 8% 0; } }
+      padding: 5.4rem 8% 0; } }
   @media (max-width: 768px) {
     main {
-      padding: 6rem 5% 0; } }
+      padding: 5.4rem 5% 0; } }
   @media (max-width: 480px) {
     main {
-      padding: 6rem 4% 0; } }
+      padding: 5.4rem 4% 0; } }
   main .wrapper-url-shortener h1 {
     text-align: center;
     text-wrap: pretty; }
@@ -290,8 +298,8 @@ main {
     color: #bfb0d6;
     text-align: center;
     text-wrap: pretty;
-    margin-top: 0.8rem;
-    margin-bottom: 2.8rem;
+    margin-top: 1rem;
+    margin-bottom: 2.6rem;
     font-weight: 400; }
   main .wrapper-url-shortener .input-bar {
     display: flex;
