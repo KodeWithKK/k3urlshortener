@@ -45,24 +45,36 @@
 }
 
 .btn-icon {
-  display: grid;
-  place-items: center;
   height: 3.6rem;
   width: 3.6rem;
   font-size: 1.8rem;
   border-radius: 50%;
-  color: inherit;
-  border: 1px solid #453b74;
   color: #bfb0d6;
+  padding: 0;
+  border: 0;
+
+  .icon {
+    font-size: 1.6rem;
+    margin-right: 0.8rem;
+    margin-left: 0.6rem;
+  }
+}
+
+.btn-icon-text {
+  display: inline-block;
+  font-size: 1.6rem;
 }
 
 .btn-toggle {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  width: 3rem;
+  width: 5rem;
   gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid #453b74;
+  border-radius: 0.8rem;
 
   .bar {
     height: 0.32rem;
@@ -71,45 +83,6 @@
 
     @include screenMaxWidth(768px) {
       background-color: #bfb0d6;
-    }
-  }
-
-  .toggle-options {
-    display: none;
-    position: absolute;
-    background-color: #191529;
-    width: 16rem;
-    top: 4.6rem;
-    right: 0;
-    border-radius: 1rem;
-
-    @include screenMaxWidth(480px) {
-      top: 4.5rem;
-    }
-
-    &::-webkit-scrollbar {
-      width: 0;
-    }
-
-    .option {
-      padding: 1rem 1.6rem;
-
-      &:hover,
-      &:active {
-        background-color: #2e274c;
-        border-radius: 1rem;
-        outline: 1px solid #453b74;
-      }
-
-      &.logout {
-        color: #f07a7a;
-
-        &:hover,
-        &:active {
-          background-color: hsla(0, 100%, 50%, 0.1);
-          outline: 1px solid #f07a7a;
-        }
-      }
     }
   }
 }

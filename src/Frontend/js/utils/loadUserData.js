@@ -1,17 +1,15 @@
 const loadUserData = () => {
   const wrapperUrlHistory = document.querySelector(".wrapper-url-history");
-  const navToggleBtn = document.querySelector("nav .btn-toggle");
   const navSigninBtn = document.querySelector("nav .btn-sign-in");
+  const btnLogout = document.querySelector(".btn-logout");
   const userData = JSON.parse(localStorage.getItem("userData"));
 
   if (userData) {
     wrapperUrlHistory.classList.add("contains-user");
-    navToggleBtn.style.display = "flex";
-    navSigninBtn.style.display = "none";
+    navSigninBtn.classList.add("u-hidden");
   } else {
     wrapperUrlHistory.classList.remove("contains-user");
-    navToggleBtn.style.display = "none";
-    navSigninBtn.style.display = "block";
+    btnLogout.classList.add("u-hidden");
   }
 };
 

@@ -16,8 +16,8 @@ const responseMessage = document.querySelector(
 );
 
 const navToggleBtn = document.querySelector("nav .btn-toggle");
-const navToggleBtnOptions = navToggleBtn.querySelector(".toggle-options");
-const btnLogout = navToggleBtnOptions.querySelector(".logout");
+const navToggleBtnOptions = document.querySelector(".toggle-options");
+const btnLogout = document.querySelector(".btn-logout");
 
 // loading data
 loadUserData();
@@ -25,11 +25,7 @@ loadHistory();
 
 // ----- Event listeners ----- //
 navToggleBtn.addEventListener("click", () => {
-  if (window.getComputedStyle(navToggleBtnOptions).display == "block") {
-    navToggleBtnOptions.style.display = "none";
-  } else {
-    navToggleBtnOptions.style.display = "block";
-  }
+  navToggleBtnOptions.classList.toggle("u-hidden");
 });
 
 btnLogout.addEventListener("click", async () => {

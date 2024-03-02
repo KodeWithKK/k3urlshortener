@@ -1,5 +1,13 @@
 "use strict";
 
+// ----- Nav Event Handler ----- //
+const navToggleBtn = document.querySelector("nav .btn-toggle");
+const navToggleBtnOptions = document.querySelector(".toggle-options");
+
+navToggleBtn.addEventListener("click", () => {
+  navToggleBtnOptions.classList.toggle("u-hidden");
+});
+
 const signinForm = document.querySelector(".form-sign-in");
 const signinFormSigninBtn = signinForm.querySelector(".btn-solid");
 const signinFormSignupBtn = signinForm.querySelector(".btn-text");

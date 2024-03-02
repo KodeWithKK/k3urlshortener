@@ -1,7 +1,6 @@
 nav {
   display: flex;
   align-items: center;
-  gap: 2.4rem;
   padding: 1.1rem 5.4rem;
   background-color: #191529;
   border-bottom: 1px solid #453b74;
@@ -12,7 +11,6 @@ nav {
 
   @include screenMaxWidth(480px) {
     padding: 1.1rem 4.6%;
-    gap: 1.4rem;
   }
 
   .brand-logo {
@@ -50,6 +48,75 @@ nav {
 
       @include screenMaxWidth(480px) {
         font-size: 1.6rem;
+      }
+    }
+  }
+
+  .nav-items {
+    display: flex;
+
+    .btn-toggle {
+      display: none;
+      display: flex;
+      position: relative;
+    }
+
+    .toggle-options {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 0.2rem;
+      position: absolute;
+      top: 6.9rem;
+      right: 0;
+      height: fit-content;
+      width: 16rem;
+      padding: 0.2rem;
+      background-color: #191529;
+      border-radius: 0.8rem;
+      border: 1px solid #453b74;
+
+      .option {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        padding: 0.2rem 0;
+        border-radius: 0.4rem;
+        height: 3.5rem;
+        border: 1px solid transparent;
+
+        &:hover {
+          background-color: #2e274c;
+          border: 1px solid #453b74;
+        }
+
+        &.btn-solid {
+          padding: 0;
+          border: 0;
+          height: 3.4rem;
+          text-align: center;
+          width: 100%;
+
+          a {
+            width: 100%;
+          }
+        }
+
+        &:has(.u-hidden) {
+          padding: 0;
+          height: 0;
+        }
+
+        &.btn-logout {
+          color: #f07a7a;
+
+          &:hover,
+          &:active {
+            background-color: hsla(0, 100%, 50%, 0.1);
+            border: 1px solid #f07a7a;
+          }
+        }
       }
     }
   }
