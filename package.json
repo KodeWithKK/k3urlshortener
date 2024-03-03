@@ -1,13 +1,13 @@
 {
-  "name": "backend",
+  "name": "k3-url-shortner",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node src/Backend/index.js",
-    "compile:sass": "node-sass src/Frontend/sass/main.scss src/Frontend/css/styles.css -w",
-    "dev": "nodemon src/Backend/index.js",
+    "start": "node index.js",
+    "compile:sass": "node-sass client/sass/main.scss client/css/styles.css -w",
+    "dev": "nodemon index.js",
     "build": "npm install"
   },
   "author": "",

@@ -8,7 +8,7 @@ const addUrlBar = (shortId, fullUrl) => {
     <div class="short-url-bar">
       <div class="container-content">
         <a class="short-url" href="${shortUrl}" target="_blank" rel="noopener noreferrer">
-          k3url.onrender.com/${shortId}
+          k3url.vercel.app/${shortId}
         </a><br>
         <a class="full-url" href="${fullUrl}" target="_blank">
           ${fullUrl}

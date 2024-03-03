@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(cookieParser());
-dotenv.config({ path: "./src/Backend/.env" });
+dotenv.config({ path: "./.env" });
 
 const corsOptions = {
   origin: process.env.CORS_ORIGIN,
@@ -25,14 +25,14 @@ app.use(cors(corsOptions));
 const __dirname1 = path.resolve();
 
 if (process.env.NODE_ENV == "production") {
-  app.use(express.static(path.join(__dirname1, "/src/Frontend")));
+  app.use(express.static(path.join(__dirname1, "/client")));
 
   app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname1, "src/Frontend/index.html"));
+    res.sendFile(path.resolve(__dirname1, "client/index.html"));
   });
 
   app.get("/u/auth", (req, res) => {
-    res.sendFile(path.resolve(__dirname1, "src/Frontend/auth.html"));
+    res.sendFile(path.resolve(__dirname1, "client/auth.html"));
   });
 }
 
