@@ -16,7 +16,7 @@ const addUrlBar = (shortId, fullUrl) => {
       </div>
       <div class="btn-container">
         <div class="btn-url-bar-action btn-copy-link">
-          <i class="fa-solid fa-link"></i>
+          <i class="fa-solid fa-copy"></i>
         </div>
         <div class="btn-url-bar-action btn-delete-link">
           <i class="fa-solid fa-trash-can"></i>
